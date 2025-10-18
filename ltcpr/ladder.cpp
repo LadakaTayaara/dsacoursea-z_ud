@@ -1,13 +1,13 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-/*int climbstairs(int n){
+int climbstairs(int n){
     if (n==0)return 1;
     if (n==1) return 0;
     int lf=climbstairs(n-1);
     int rt=climbstairs(n-2);
     return lf+rt;
-}*/
+}
 
 int main(){
     int n;

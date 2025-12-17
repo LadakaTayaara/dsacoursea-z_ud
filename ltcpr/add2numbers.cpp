@@ -57,7 +57,7 @@ public:
         int total=0;
         int carry=0;
         while(l1!=nullptr || l2!=nullptr || carry!=0){
-            total=carry;//without this line there would be memory limit exceeded
+            total=carry;//without this line there would be memory
             if(l1!=nullptr){
                 total+=l1->val;
                 l1=l1->next;

@@ -1,36 +1,22 @@
 #include <bits/stdc++.h>
 #include <string>
+#include <cmath>
 #include <algorithm>
 using namespace std;
 
 class Solution {
 public:
-    string convertbinary(int n){
-        string res ="";
-        while(n!=1){
-            if(n%2==1){res +='1';}
-            else{res +='0';}
-            reverse(res.begin(),res.end());
-            
+    long long reverseBits(int n) {
+        long long res=0;
+        long long k=pow(2,31);
+        int oe=0b0001;
+        for(int i=31;i>=0;i--){
+            if((n & oe) != 0){
+                res+=k;
+            }
+            oe = oe << 1;
+            k/=2;
         }
         return res;
-    }
-
-    int convertdec(string s){
-        int sum=0; int p2=1;
-        int len=s.length();
-        for(int i=len-1;i>=0;i--){
-            if(s[i]==1){
-                sum+=p2;
-                p2*=2;
-            }
-        }
-        return sum;
-    }
-
-    int reverseBits(int n) {
-        string g=convertbinary(n);
-        reverse(g.begin(),g.end());
-        return convertdec(g);
     }
 };

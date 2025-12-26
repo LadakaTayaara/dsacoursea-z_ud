@@ -13,37 +13,25 @@ using vll = vector<ll>;
 #define rall(x) (x).rbegin(), (x).rend()
 
 void solve() {
-    int n;
-    cin >> n;
-    int a;
-    cin>>a;
+    int n, a;
+    cin >> n >> a;
     vector<int> v(n);
-    int ct=0;
-    for(int i=0;i<n;i++){
-        cin>>v[i];
-        if(a<=v[i]){
-            ct++;
-        }
-    }
-    int d=0;
-    for(int i=1;i<n;i++){
-        d+=abs(v[i-1]-v[i]);
-    }
-    d/=n-1;
-    if((a+d)!=a || (a-d)!=a){
-        if(ct>(n/2)){
-        cout<<a+d;
-        }
-        else{
-            cout<<a-d;
-        }
-    }
-    else{
-        cout<<2*a;
-    }
     
-}
+    int count_less = 0;
+    int count_greater = 0;
+    
+    for(int i = 0; i < n; i++) {
+        cin >> v[i];
+        if (v[i] < a) count_less++;
+        else if (v[i] > a) count_greater++;
+    }
 
+    if (count_less >= count_greater) {
+        cout << a - 1 << "\n";
+    } else {
+        cout << a + 1 << "\n";
+    }
+}
 int main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);

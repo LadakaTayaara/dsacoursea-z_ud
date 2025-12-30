@@ -1,5 +1,6 @@
+//upsolve this code later for greedy concepts
+
 #include <bits/stdc++.h>
-#include <string>
 using namespace std;
 
 // Type aliases
@@ -14,17 +15,25 @@ using vll = vector<ll>;
 #define rall(x) (x).rbegin(), (x).rend()
 
 void solve() {
-    int n;
-    cin >> n;
-    string s(n,'*');
-    cin>>s;
-    if((s.find("2026") != string::npos) || (s.find("2025") == string::npos)){
-        cout<<0<<endl;
+    long long a,b;
+    cin>>a>>b;
+    if(a>b){
+        swap(a,b);
     }
-    else{
-        cout<<1<<endl;
+    int x=0, y=1;
+    int ans=0;
+    while( x<=a && y<=b){
+        x*=2;
+        y*=2;
+        if(ans%2 ==0){
+            x++;
+        }
+        else{
+            y++;
+        }
+        ans++;
     }
-
+    cout<<ans<<endl;
 }
 
 int main() {

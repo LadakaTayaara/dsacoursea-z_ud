@@ -1,5 +1,5 @@
 #include <bits/stdc++.h>
-#include <string.h>
+#include <string>
 using namespace std;
 
 // Type aliases
@@ -14,24 +14,20 @@ using vll = vector<ll>;
 #define rall(x) (x).rbegin(), (x).rend()
 
 void solve() {
-    int n, k;
+    int n,k;
     cin >> n >> k;
-    string s;
-    cin >> s;
+    string s(n,'*');
+    cin>>s;
+
+    int ans=0;
+    int mini_i=0;
     for(int i=0;i<n;i++){
-        if(s[i]=='1' && (i+k)<=n-1){
-            for(int j=i+1;j<=i+k;j++){
-                s[j]='6';
-            }
+        if(s[i] == '0' && i>=mini_i) ans++;
+        else if(s[i]=='1'){
+            mini_i= i + k +1;
         }
     }
-    int res=0;
-    for(int i=0;i<n;i++){
-        if(s[i]=='0'){
-            res++;
-        }
-    }
-    cout<<res<<endl;
+    cout<< ans <<endl;
 }
 
 int main() {
@@ -45,5 +41,3 @@ int main() {
     }
     return 0;
 }
-
-//work on this later

@@ -12,15 +12,6 @@ using vll = vector<ll>;
 #define all(x) (x).begin(), (x).end()
 #define rall(x) (x).rbegin(), (x).rend()
 
-int f(vector<vector <int>> &a,vector<vector <int>> &dp,int i,int j,int lim){
-    if(i==lim-1){return a[lim-1][j];}
-    if(i==lim-1 && j==lim-1){return a[lim-1][lim-1];}
-    if(dp[i][j]!=-1){return dp[i][j];}
-    int down=a[i][j] + f(a,dp,i+1,j,lim);
-    int diag=a[i][j] + f(a,dp,i+1,j+1,lim);
-    return dp[i][j]=max(down,diag);
-}
-
 void solve() {
     int n;
     cin >> n;
@@ -31,7 +22,17 @@ void solve() {
             cin>>a[i-1][j];
         }
     }
-    int res=f(a,dp,0,0,n);
+    for(int i=0;i<n;i++){
+        dp[n-1][i]=a[n-1][i];
+    }
+    for(int i=n-2;i>=0;i--){
+        for(int j=i;j>=0;j--){
+            int down=a[i][j] + dp[i+1][j];
+            int diag=a[i][j] + dp[i+1][j+1];
+            dp[i][j]=max(down,diag);
+        }
+    }
+    int res=dp[0][0];
     cout<<res<<endl;
 }
 

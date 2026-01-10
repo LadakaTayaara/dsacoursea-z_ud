@@ -43,13 +43,8 @@ void solve() {
     for(int i=3;i<n;i++){
         long long ons=INT_MAX,tns=INT_MAX,trns=INT_MAX;
         ons=a[i]+dp[i-1];
-        
-        if(i>1){
-            tns=a[i]+dp[i-2];
-        }
-        if(i>2){
-            trns=a[i]+dp[i-3];
-        }
+        tns=a[i]+dp[i-2];
+        trns=a[i]+dp[i-3];
         dp[i]=min({ons,tns,trns});
     }
     cout<<dp[n-1] + 1<<"\n";

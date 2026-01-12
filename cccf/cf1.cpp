@@ -1,0 +1,46 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+// Type aliases
+using ll = long long;
+using pii = pair<int,int>;
+using vi = vector<int>;
+using vll = vector<ll>;
+
+// Macros
+#define pb push_back
+#define all(x) (x).begin(), (x).end()
+#define rall(x) (x).rbegin(), (x).rend()
+
+void solve() {
+    int s,k,m;
+    cin >> s >> k >> m;
+    if(m%k>s){
+        cout<<0<<"\n";
+        return;
+    }
+    if(m==k){
+        cout<<m<<"\n";
+        return;
+    }
+    if(m%k==0){
+        cout<<s<<"\n";
+        return;
+    }
+    else{
+        cout<<m%k<<"\n";
+    }
+    return;
+}
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int t = 1;
+    cin >> t;
+    while (t--) {
+        solve();
+    }
+    return 0;
+}

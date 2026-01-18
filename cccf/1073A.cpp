@@ -13,14 +13,30 @@ using vll = vector<ll>;
 #define rall(x) (x).rbegin(), (x).rend()
 
 void solve() {
-    int s,k,m;
-    cin >> s >> k >> m;
-    if((m/k)%2==0){
-        cout<<s-(m%k)<<endl;
+    long long n;
+    cin >> n;
+
+    vector<pair <long long,long long>> a(n);
+    for(long long i=0;i<n;i++){
+        cin>>a[i].first;
+        if(i%2==0){
+            a[i].second=0;
+        }
+        else{
+            a[i].second=1;
+        }
     }
-    else if((m/k)%2==1){
-        cout<<m%k<<endl;
+
+    sort(a.begin(),a.end());
+
+    for(long long i=0;i<n-1;i++){
+        if(a[i].second==a[i+1].second){
+            cout<<"NO\n";
+            return;
+        }
     }
+
+    cout<<"YES\n";
     return;
 }
 

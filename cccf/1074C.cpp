@@ -12,24 +12,28 @@ using vll = vector<ll>;
 #define all(x) (x).begin(), (x).end()
 #define rall(x) (x).rbegin(), (x).rend()
 
+int MEX(const vector<ll> &hsh) {
+    int mex = 0;
+    while (mex < (int)hsh.size() && hsh[mex] > 0) {
+        ++mex;
+    }
+    return mex;
+}
+
 void solve() {
     int n;
     cin >> n;
-    vector <int> a(n),b(n);
-
-    for(int i=0;i<n;i++)cin>>a[i];
-    for(int i=0;i<n;i++)cin>>b[i];
-
-    ll mx=0;ll mn=0;
-
-    for(ll i=0;i<n;i++){
-        long long x=max({mx-a[i],mn-a[i],b[i]-mx,b[i]-mn});
-        ll y=min({mx-a[i],mn-a[i],b[i]-mx,b[i]-mn});
-        mx=x;
-        mn=y;
+    vector<ll> a(n);
+    for (int i = 0; i < n; i++) {
+        cin >> a[i];
     }
-
-    cout<<mx<<endl;
+    sort(a.begin(), a.end());
+    ll maxval = a.back() + a[0];
+    vector<ll> hsh(maxval + 2, 0);
+    for (int i = 0; i < n; i++) {
+        hsh[a[i]]++;
+    }
+    cout << MEX(hsh) << endl;
 }
 
 int main() {

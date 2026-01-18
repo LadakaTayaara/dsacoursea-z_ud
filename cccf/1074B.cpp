@@ -13,23 +13,18 @@ using vll = vector<ll>;
 #define rall(x) (x).rbegin(), (x).rend()
 
 void solve() {
-    int n;
+    ll n;
     cin >> n;
-    vector <int> a(n),b(n);
-
-    for(int i=0;i<n;i++)cin>>a[i];
-    for(int i=0;i<n;i++)cin>>b[i];
-
-    ll mx=0;ll mn=0;
-
+    vector<ll> a(n);
+    ll mx=INT_MIN;
     for(ll i=0;i<n;i++){
-        long long x=max({mx-a[i],mn-a[i],b[i]-mx,b[i]-mn});
-        ll y=min({mx-a[i],mn-a[i],b[i]-mx,b[i]-mn});
-        mx=x;
-        mn=y;
+        cin>>a[i];
+        if(a[i]>mx){
+            mx=a[i];
+        }
     }
-
-    cout<<mx<<endl;
+    
+    cout<<mx*n<<"\n";
 }
 
 int main() {

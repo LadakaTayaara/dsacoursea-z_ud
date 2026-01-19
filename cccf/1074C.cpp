@@ -12,14 +12,6 @@ using vll = vector<ll>;
 #define all(x) (x).begin(), (x).end()
 #define rall(x) (x).rbegin(), (x).rend()
 
-int MEX(const vector<ll> &hsh) {
-    int mex = 0;
-    while (mex < (int)hsh.size() && hsh[mex] > 0) {
-        ++mex;
-    }
-    return mex;
-}
-
 void solve() {
     int n;
     cin >> n;
@@ -28,12 +20,18 @@ void solve() {
         cin >> a[i];
     }
     sort(a.begin(), a.end());
-    ll maxval = a.back() + a[0];
-    vector<ll> hsh(maxval + 2, 0);
-    for (int i = 0; i < n; i++) {
-        hsh[a[i]]++;
+    int chain=1;int m=0;
+    for (int i =1 ; i < n; i++) {
+        if(a[i]==a[i-1]+1){
+            chain++;
+        }
+        else{
+            chain=1;
+        }
+        m=max(m,chain);
     }
-    cout << MEX(hsh) << endl;
+    cout<<m<<endl;
+    return;
 }
 
 int main() {

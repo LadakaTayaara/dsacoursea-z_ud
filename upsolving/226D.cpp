@@ -35,9 +35,9 @@ void solve() {
     sort(freqs.begin(), freqs.end());
 
     int eliminated = 0;
-    for (int f : freqs) {
-        if (k >= f) {
-            k -= f;
+    for (int i = 0; i < freqs.size(); i++) {
+        if (k >= freqs[i]) {
+            k -= freqs[i];
             eliminated++;
         } else {
             break;

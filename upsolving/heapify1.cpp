@@ -15,23 +15,28 @@ using vll = vector<ll>;
 void solve() {
     int n;
     cin >> n;
-    vector<int> a(n);
-    for(int i=0;i<n;i++){cin>>a[i];}
-    sort(a.begin(),a.end());
-    for(int i=0;i<n-1;i++){
-        while(a[i]*2<=a[n-1]){
-            a[i]*=2;
+    vector<ll> a(n); for(int i=0;i<n;i++){cin>>a[i];}
+
+    for(int i=1;i<=n;i++){
+        if(a[i-1]>a[2*i-1] && 2*i - 1 < n){
+            swap(a[i-1],a[2*i - 1]);
         }
     }
 
-    sort(a.begin(),a.end());
-    int res=a[n-1] - a[0];
-    for(int i=0;i<n;i++){
-        a[i]*=2;
-        res=min(res,a[i] - a[(i+1)%n]);
+    int flag=1;
+    for(int i=0;i<n-1;i++){
+        if(a[i]>a[i+1]){
+            flag=0;
+            break;
+        }
     }
 
-    cout<<res<<endl;
+    if(flag){
+        cout<<"YES\n";
+    }
+    else{
+        cout<<"NO\n";
+    }
 }
 
 int main() {

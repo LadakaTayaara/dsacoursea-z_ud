@@ -13,9 +13,9 @@ using vll = vector<ll>;
 #define rall(x) (x).rbegin(), (x).rend()
 
 void solve() {
-    int b,g,x,y,n;
+    long long b,g,x,y,n;
     cin >> b >> g >> x >> y >> n;
-    int res=ceil((b+g)/n);
+    long long res=(b+g+n-1)/n;
     if(res*x<=b && res*y<=g){
         cout<<res<<endl;
         return;

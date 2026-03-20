@@ -13,30 +13,27 @@ using vll = vector<ll>;
 #define rall(x) (x).rbegin(), (x).rend()
 
 void solve() {
-    int n;
-    cin >> n;
-    vector<ll> a(n); for(int i=0;i<n;i++){cin>>a[i];}
-
-    for(int i=1;i<=n;i++){
-        if(a[i-1]>a[2*i-1] && 2*i - 1 < n){
-            swap(a[i-1],a[2*i - 1]);
+    int n,h,l;
+    cin>>n>>h>>l;
+    vector<int> a(n);
+    for(int i=0;i<n;i++){
+        cin>>a[i];
+    }
+    sort(a.begin(),a.end());
+    vector<vector<int>> p(h,vector<int>(l,0));
+    
+    int res_h=0;
+    int res_l=0;
+    for(int i=0;i<n;i++){
+        if(a[i]<=h){
+            res_h++;
+        }
+        if(a[i]<=l){
+            res_l++;
         }
     }
 
-    int flag=1;
-    for(int i=0;i<n-1;i++){
-        if(a[i]>a[i+1]){
-            flag=0;
-            break;
-        }
-    }
-
-    if(flag){
-        cout<<"YES\n";
-    }
-    else{
-        cout<<"NO\n";
-    }
+    cout<<min(max(res_h,res_l)/2,min(res_h,res_l))<<endl;
 }
 
 int main() {

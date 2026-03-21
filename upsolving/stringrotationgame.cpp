@@ -12,27 +12,31 @@ using vll = vector<ll>;
 #define all(x) (x).begin(), (x).end()
 #define rall(x) (x).rbegin(), (x).rend()
 
-int digitcount(long long n){
-    int sum=0;
-    while(n > 0){
-        sum+= n%10;
-        n/=10;
+void rotation(string &s,int n){
+    char temp=s[n-1];
+    for(int i = n-1; i > 0; i--){
+        s[i] = s[i-1];
     }
-    return sum;
+    s[0]=temp;
 }
 
 void solve() {
-    long long x;
-    cin >> x;
-    int res=0;
-    for(long long i=x+1;i <= x+90;i++){
-        if (i - digitcount(i)==x){
-            res++;
+    int n;
+    cin >> n;
+    string s;
+    cin>>s;
+
+    int res=INT_MIN;
+    for(int i=0;i<=n;i++){
+        rotation(s,n);
+        int cnt = 1;
+        for(int i = 1; i < n; i++){
+            if(s[i] != s[i-1]) cnt++;
         }
+        res=max(res,cnt);
     }
 
     cout<<res<<endl;
-    return;
 }
 
 int main() {

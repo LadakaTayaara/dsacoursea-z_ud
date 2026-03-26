@@ -13,35 +13,26 @@ using vll = vector<ll>;
 #define rall(x) (x).rbegin(), (x).rend()
 
 void solve() {
-    ll n;
+    int n;
     cin >> n;
     
-    vector<ll> res;
-    int flag=0;
-    ll k=10;
-    while(k+1 <= n){
-        if(n%(long long)(1+k) == 0){
-            res.push_back(n/(1+k));
-            flag=1;
-            
-        }
-        k*=10;
+
+    int r_n=n;
+    int l_n=n;
+    int l_d=0;
+    int r_d=0;
+
+    while((r_n%2!=0 && r_n%5!=0) || r_n%10==0){
+        r_n++;
+        r_d++;
     }
 
-    if(flag==0){
-        cout<<0<<endl;
-        return;
+    while((l_n%2!=0 && l_n%5!=0) || l_n%10==0){
+        l_n--;
+        l_d++;
     }
 
-    sort(res.begin(),res.end());
-
-    cout<<res.size()<<endl;
-    for(int i=0;i<res.size();i++){
-        cout<<res[i]<<" ";
-    }
-    cout<<endl;
-
-    return;
+    cout<<min(l_d,r_d)<<endl;
 }
 
 int main() {

@@ -15,45 +15,13 @@ using vll = vector<ll>;
 void solve() {
     ll a,b,k;
     cin >> a >> b >> k;
-    if(k==1){
-        if(a!=b){
-            cout<<2<<endl;
-            return;
-        }
-        else{
-            cout<<1<<endl;
-            return;
-        }
-    }
-
-    if(max(a,b)<k){
-        cout<<1<<endl;
-        return;
-    }
-    
-    int flag1=0,flag2=0;
-
-    for(int i=2;i<=k;i++){
-        if(a%i == 0){
-            flag1=1;
-            break;
-        }
-    }
-
-    for(int i=2;i<=k;i++){
-        if(b%i == 0){
-            flag2=1;
-            break;
-        }
-    }
-
-    if(flag1 && flag2){
+    ll m=gcd(a,b);
+    if(a/m <=k && b/m<=k){
         cout<<1<<endl;
         return;
     }
     else{
         cout<<2<<endl;
-        return;
     }
 }
 

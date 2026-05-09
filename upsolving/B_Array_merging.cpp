@@ -15,46 +15,43 @@ using vll = vector<ll>;
 void solve() {
     int n;
     cin >> n;
-    vector<int> a(n), b(n);
-    for(int i=0; i<n; i++) cin >> a[i];
-    for(int i=0; i<n; i++) cin >> b[i];
+    vector<int> a(n);
+    vector<int> b(n);
 
-    // Maps to store the longest streak found so far for each number
-    map<int, int> maxA, maxB;
+    for(int i=0;i<n;i++)cin>>a[i];
+    for(int i=0;i<n;i++)cin>>b[i];
 
-    // Process Array A
-    int i = 0;
-    while(i < n) {
-        int j = i;
-        while(j < n && a[j] == a[i]) j++;
-        int streak = j - i;
-        maxA[a[i]] = max(maxA[a[i]], streak);
-        i = j;
+    map<int,int> maxa,maxb;
+
+    int i=0;
+    while(i<n){
+        int j=i;
+        while(j<n && a[j]==a[i])j++;
+        int streak=j-i;
+        maxa[a[i]]=max(maxa[a[i]],streak);
+        i=j;
     }
 
-    // Process Array B
-    i = 0;
-    while(i < n) {
-        int j = i;
-        while(j < n && b[j] == b[i]) j++;
-        int streak = j - i;
-        maxB[b[i]] = max(maxB[b[i]], streak);
-        i = j;
+    i=0;
+    while(i<n){
+        int j=i;
+        while(j<n && b[j]==b[i])j++;
+        int streak=j-i;
+        maxb[b[i]]=max(maxb[b[i]],streak);
+        i=j;
     }
 
-    // Find the maximum sum of streaks for any number
-    int ans = 0;
-    
-    // Check all numbers that appeared in A
-    for(auto const& [val, streak] : maxA) {
-        ans = max(ans, streak + maxB[val]);
-    }
-    // Check all numbers that appeared in B (in case they weren't in A)
-    for(auto const& [val, streak] : maxB) {
-        ans = max(ans, streak + maxA[val]);
+    int res=INT_MIN;
+
+    for(auto const& [val , stk] : maxa){
+        res=max(res,stk + maxb[val]);
     }
 
-    cout << ans << endl;
+    for(auto const& [val , stk] : maxb){
+        res=max(res,stk + maxa[val]);
+    }
+
+    cout<<res<<endl;
 }
 
 int main() {

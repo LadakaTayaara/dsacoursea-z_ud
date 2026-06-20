@@ -17,13 +17,25 @@ void solve() {
     cin >> n;
     vector<int> a(n);
 
-    for(int i=0;i<n;i++)cin>>a[i];
+    int total_or = 0;
+    for(int i = 0; i < n; i++){
+        cin >> a[i];
+        total_or |= a[i];
+    }
 
-    int res=0;
+    int partitions = 0;
+    int current_or = 0;
 
+    for(int i = 0; i < n; i++){
+        current_or |= a[i];
+        
+        if(current_or == total_or){
+            partitions++;
+            current_or = 0;
+        }
+    }
     
-
-    cout<<res<<endl;
+    cout << n - partitions << "\n";
 }
 
 int main() {

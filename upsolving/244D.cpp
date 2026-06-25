@@ -16,34 +16,26 @@ void solve() {
     int n;
     cin >> n;
     vector<int> a(n);
-    for(int i = 0; i < n; i++) cin >> a[i];
 
-    map<int, int> count;
-    map<int, int> cost;
+    for(int i=0;i<n;i++)cin>>a[i];
 
-    for(int i = 0; i < n; i++) {
-        int curr = a[i];
-        int ops = 0;
-        
-        while(true) {
-            count[curr]++;
-            cost[curr] += ops;
-            
-            if(curr == 0) break;
-            
-            curr /= 2;
-            ops++;
+    int res=0;
+    int x=a[0];
+
+    for(int i=1;i<n;i++){
+        while(x!=a[i]){
+            if(x>a[i]){
+                x/=2;
+                res+=i;
+            }
+            else if(a[i]>x){
+                a[i]/=2;
+                res++;
+            }
         }
     }
 
-    int min_ops = INT_MAX;
-    for(auto const& [val, freq] : count) {
-        if(freq == n) {
-            min_ops = min(min_ops, cost[val]);
-        }
-    }
-
-    cout << min_ops << "\n";
+    cout<<res<<endl;
 }
 
 int main() {
